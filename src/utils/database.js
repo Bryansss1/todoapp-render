@@ -11,7 +11,8 @@ const db= new Sequelize({
     port:process.env.DB_PORT,
     password:process.env.DB_PASSWORD,
     logging:false,
-    dialect:"postgres"//la base de datos que estamos usando
+    dialect:"postgres",//la base de datos que estamos usando
+    dialectOptions:{ssl:{require:true,rejectUnauthorized:false}}
 })
 
 
