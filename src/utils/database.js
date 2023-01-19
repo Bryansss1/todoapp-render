@@ -12,6 +12,7 @@ const db= new Sequelize({
     password:process.env.DB_PASSWORD,
     logging:false,
     dialect:"postgres",//la base de datos que estamos usando
+    //si estoy en local con esa instruccion no me dejara
     dialectOptions:{ssl:{require:true,rejectUnauthorized:false}}
 })
 

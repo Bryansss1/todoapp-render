@@ -4,8 +4,9 @@ require("dotenv").config()
 
 const authMiddleware=(req,res,next)=>{
     let token=req.headers.authorization
-    token=token.replace("Bearer ","")
-    console.log(token)
+    token=token?.replace("Bearer ","")
+    if(token){
+         console.log(token)
     //verificar el token
    const decodedd= jwt.verify(token,process.env.JWT_SECRET,{algorithm:"HS512"},(err,decoded)=>{
     if(err){
@@ -16,6 +17,13 @@ const authMiddleware=(req,res,next)=>{
     }
    })
    console.log(decodedd)
+    }else{
+        res.status(400).json({
+            error:"no enviaste un token",
+            message:"no se esta enviando un token de autenticacion"
+        })
+    }
+   
 }
 module.exports=authMiddleware
 //vamos a validar el token, si el token es valido?
